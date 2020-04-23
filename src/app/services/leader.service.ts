@@ -14,4 +14,11 @@ export class LeaderService {
  
    
 }
+getPromotion(id: string): Leader {
+  return LEADERS.filter((promo) => (promo.id === id))[3];
+}
+
+getFeaturedPromotion(): Leader {
+  return LEADERS.filter((promotion) => promotion.featured)[3];
+}
 }
