@@ -18,8 +18,8 @@ export class HomeComponent implements OnInit {
 
   dish: Dish;
   promotion: Promotion;
-  //leader: Leader;
-  leader: Leader[] = LEADERS;
+  //leader: Leader[];
+leader: Leader[] = LEADERS;
   selectleader = LEADERS[3];
 
   constructor(private dishservice: DishService,
@@ -28,9 +28,13 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.dish = this.dishservice.getFeaturedDish();
-    this.promotion = this.promotionservice.getFeaturedPromotion();
-    this.leader = this.leaderservice.getleader();
+    //.dish = this.dishservice.getFeaturedDish();
+   //this.promotion = this.promotionservice.getFeaturedPromotion();
+    //this.leader = this.leaderservice.getleader();
+
+   this.dishservice.getFeaturedDish().then(dish => this.dish = dish);
+    this.promotionservice.getFeaturedPromotion().then(promotion => this.promotion = promotion);
+   this.leaderservice.getFeaturedLeader().then(leader => this.leader[4] = leader);
   }
 
 
