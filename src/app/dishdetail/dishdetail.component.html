@@ -6,7 +6,7 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
-  <div fxFlex="40"  *ngIf="dish">
+  <div fxFlex="40"  *ngIf="dish" [@visibility]="visibility" [@expand]>
     <div fxFlex>
       <mat-card>
         <mat-card-header>
@@ -14,7 +14,7 @@
             <h3>{{dish.name | uppercase}}</h3>
           </mat-card-title>
         </mat-card-header>
-        <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+        <img mat-card-image src="{{ BaseURL + dish.image }}" alt={{dish.name}}>
         <mat-card-content>
           <p>{{dish.description}}
           </p>
@@ -35,7 +35,7 @@
   </div>
   
   <div fxFlex="40">
-    <div fxFlex *ngIf="dish">
+    <div fxFlex *ngIf="dish" [@visibility]="visibility" [@expand]>
     <mat-list >
       <h2>Comments</h2>
 
@@ -44,11 +44,16 @@
           <p mat-line="">{{i.rating}} Stars</p>
           <p mat-line="">-- {{i.author}} {{i.date | date}}</p>
         
-      </mat-list-item>
+     
+     
+     
+     
+     
+        </mat-list-item>
+           
      
       
   </mat-list>
-  
   
 <form  data model novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
   <p>
@@ -85,8 +90,13 @@
 </div>
 
 </div>
+<div [hidden]="dishes || errMess">
+  <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+</div>
+<div fxFlex *ngIf="errMess">
+  <h2>Error</h2>
+  <h4>{{errMess}}</h4>
+</div>
   
 </div>
   
-
-
